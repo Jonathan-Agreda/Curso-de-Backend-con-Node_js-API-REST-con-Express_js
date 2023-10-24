@@ -14,13 +14,35 @@ app.get('/nueva-ruta', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
+  res.json([
+    {
+      name: 'Product 1',
+      price: 1000,
+    },
+    {
+      name: 'Product 2',
+      price: 2000,
+    }
+  ]);
+});
+
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
   res.json({
-    name: 'Product 1',
-    price: 500
+    id,
+    name: 'Product 2',
+    price: 2000,
+  });
+});
+
+app.get('/categories/:categoryId/products/:productId', (req, res) => {
+  const { categoryId, productId } = req.params;
+  res.json({
+    categoryId,
+    productId,
   });
 });
 
 app.listen(port, () => {
   console.log(`Server running on: http://${ip}:${port}`);
 });
-
