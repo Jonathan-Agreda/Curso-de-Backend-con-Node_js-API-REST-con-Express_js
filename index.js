@@ -6,6 +6,8 @@ const app = express();
 const port = 3000;
 const ip = os.networkInterfaces().wlo1[0].address;
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Hello World, It´s my Server in Express');
 });
