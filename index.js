@@ -1,5 +1,6 @@
 const express = require('express');
 const routerApi = require('./router');
+const { logErrors, errorHandler } = require('./middlewares/error.handler');
 const os = require('os');
 
 const app = express();
@@ -17,6 +18,10 @@ app.get('/nueva-ruta', (req, res) => {
 });
 
 routerApi(app);
+
+//los middlewares siempre deben ir despues del ruteo y se ejecutan en el oren que se ubican uno tras el otro
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server running on: http://${ip}:${port}`);
