@@ -2,15 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const routerApi = require('./router');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
-const os = require('os');
+//const os = require('os');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const ip = os.networkInterfaces().wlo1[0].address;
+//const ip = os.networkInterfaces().wlo1[0].address;
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:8080', 'http://127.0.0.1:5500'];
+const whitelist = ['http://localhost:3000', 'http://127.0.0.1:5500'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
@@ -38,5 +38,5 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Server running on: http://${ip}:${port}`);
+  console.log(`Server running on: http://localhost:${port}`);
 });
