@@ -8,7 +8,7 @@ class ProductsService {
   }
 
   generate() {
-    const limit = 100;
+    const limit = 3; // regresar a 100 para IOT se deja en 3
     for (let index = 0; index < limit; index++) {
       this.products.push({
         id: faker.string.uuid(),
